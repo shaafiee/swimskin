@@ -569,7 +569,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     // Token symbol
     string private _symbol;
 
-    uint256 public MAX_OKB;
+    uint256 public MAX_SSK;
 
     // Optional mapping for token URIs
     //mapping (uint256 => string) private _tokenURIs;
@@ -878,10 +878,10 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         tokenBalance[to] = tokenBalance[to] + 1;
         tokensMinted = tokensMinted + 1;
         
-        /*if (totalSupply() < (MAX_OKB - (MAX_OKB / 10)) && winnersCount == 2) {
+        /*if (totalSupply() < (MAX_SSK - (MAX_SSK / 10)) && winnersCount == 2) {
             winnerToken[tokenId] = false;
         } else {
-            if (totalSupply() < (MAX_OKB - (MAX_OKB / 2)) && winnersCount == 1) {
+            if (totalSupply() < (MAX_SSK - (MAX_SSK / 2)) && winnersCount == 1) {
                 winnerToken[tokenId] = false;
             } else {
                 uint randNum = random();
@@ -1096,21 +1096,21 @@ abstract contract Ownable is Context {
 pragma solidity ^0.8.0;
 
 /*
- * @title OKB contract
+ * @title SSK contract
  */
-contract okaybeards is Ownable, ERC721 {
+contract swimskin is Ownable, ERC721 {
 
-    //uint256 public tokenPrice = 2000000000000000; //0.002 ETH
+    uint256 public tokenPrice = 20000000000000000; //0.02 ETH
 
     
-    uint256 public constant maxOKBPurchase = 10;
+    uint256 public constant maxSSKPurchase = 5;
 
-    uint256 public constant preMaxPerWallet = 5;
+    uint256 public preMaxPerWallet = 5;
     //uint256 public constant freeMintQty = 1000;
     
     
     /*
-    uint256 public constant maxOKBPurchase = 10;
+    uint256 public constant maxSSKPurchase = 10;
 
     uint256 public constant preMaxPerWallet = 10;
     uint256 public constant freeMintQty = 15;
@@ -1128,12 +1128,12 @@ contract okaybeards is Ownable, ERC721 {
     uint256 public deposited = 0;
 
     constructor(string memory name, string memory symbol, uint256 maxNftSupply) ERC721(name, symbol) {
-        MAX_OKB = maxNftSupply;
+        MAX_SSK = maxNftSupply;
     }
 
     /*function withdrawWinnings() public {
         require(winner[msg.sender] > 0, "No winning tokens");
-        require(totalSupply() >= MAX_OKB, "Minting not done");
+        require(totalSupply() >= MAX_SSK, "Minting not done");
         require(!withdrawn[msg.sender], "Already withdrawn");
 
         withdrawn[msg.sender] = true;
@@ -1146,6 +1146,12 @@ contract okaybeards is Ownable, ERC721 {
         //require(amount <= (((mintContrib * 70) / 100) - ownerWithdrawals), "Cannot withdraw more than 70%");
         //ownerWithdrawals = ownerWithdrawals + amount;
         payable(msg.sender).transfer(amount);
+    }
+
+    function changeWalletLimit(uint256 amount) public onlyOwner {
+        //require(amount <= (((mintContrib * 70) / 100) - ownerWithdrawals), "Cannot withdraw more than 70%");
+        //ownerWithdrawals = ownerWithdrawals + amount;
+        preMaxPerWallet = amount;
     }
 
     /*function emergencyWithdraw(uint256 amount) public onlyOwner {
@@ -1173,20 +1179,20 @@ contract okaybeards is Ownable, ERC721 {
     }
 
     /**
-    * Mints OKB
+    * Mints SSK
     */
-    function mintOKB(uint8 numberOfTokens) public payable {
+    function mintSSK(uint8 numberOfTokens) public payable {
         uint256 supply = totalSupply();
-        require(numberOfTokens <= maxOKBPurchase, "e2");
-        require((supply + numberOfTokens) <= MAX_OKB, "e3");
+        require(numberOfTokens <= maxSSKPurchase, "e2");
+        require((supply + numberOfTokens) <= MAX_SSK, "e3");
         require(saleIsActive, "e4");
 
-        require((balanceOf(msg.sender) + numberOfTokens) <= 5, "e5");
+        require((balanceOf(msg.sender) + numberOfTokens) <= preMaxPerWallet, "e5");
 
-        //require((tokenPrice * numberOfTokens) <= msg.value, "E15");
+        require((tokenPrice * numberOfTokens) <= msg.value, "E15");
 
         for(uint256 i = 1; i <= numberOfTokens; i++) {
-            if (supply < MAX_OKB) {
+            if (supply < MAX_SSK) {
                 _safeMint(msg.sender, supply + i);
             }
         }

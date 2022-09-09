@@ -16,8 +16,8 @@ async function main() {
 	console.log("Account balance:", (await deployer.getBalance()).toString());
 
 	//deployTransaction.gasLimit = 200000;
-	const okaybeers = await ethers.getContractFactory("okaybeards");
-	const contract = await okaybeers.deploy("Okay Beards", "OKB", 5555);
+	const okaybeers = await ethers.getContractFactory("swimskin");
+	const contract = await okaybeers.deploy("Swim.skin", "SSK", 7777);
 
 	console.log("Contract deployed at:", contract.address);
 }

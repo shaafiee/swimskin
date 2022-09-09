@@ -1,7 +1,6 @@
 <html>
     <head>
         <title>Swim.skin</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
         <link rel="shortcut icon" type="image/jpg" href="/favicon"/>
         <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,14 +19,13 @@
             }
 
             body {
-                /*font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;*/
-                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 background: #E7E8D1;
                 color: #303030;
                 margin-top: 0;
                 padding-top: 0;
                 margin-bottom: 150px;
-                font-size: 1.1em;
+                font-size: 1.2em;
                 /*
                 background-image: url("bglight.png");
                 background-position: center top;
@@ -366,7 +364,6 @@
             }
 
             #navbarouter {
-                font-size: 1.2em;
                 position: fixed;
                 top: 0;
                 z-index: 9;
@@ -466,18 +463,16 @@
             }
 
             .outersecond {
-                background-color: rgba(255, 253, 245, 0.6);
+                background-color: rgba(250, 245, 230, 0.6);
                 border-radius: 1.5em;
                 padding-bottom: 2em;
-                box-shadow: rgba(50, 50, 93, 0.01) 0px 13px 27px -5px, rgba(0, 0, 0, 0.05) 0px 8px 16px -8px;            
-
             }
 
             #navdropdown {
                 position: relative;
                 background: #ffffff;
                 border-radius: 0 0 .5em .5em;
-                box-shadow: rgba(50, 50, 93, 0.05) 0px 13px 27px -5px, rgba(0, 0, 0, 0.1) 0px 8px 16px -8px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
                 /*display: none;*/
                 /*visibility: hidden;*/
                 overflow: hidden;
@@ -611,7 +606,7 @@
 
 
             #mintlottie {
-                height: 15em;
+                height: 10em;
             }
 
             #roadmaplottie {
@@ -669,9 +664,8 @@
             .faqcheck {position: absolute; opacity: 0; height: 0px;}
 
             .faqsel {
-                font-size: 1.2em;
+                font-size: 1.3em;
                 font-weight: bold;
-                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 cursor: pointer;
                 border-radius: .3em;
                 color: #505050;
@@ -734,20 +728,6 @@
                 background-size: contain;
                 background-repeat: no-repeat;
                 margin: auto;
-            }
-
-
-            #protologo {
-                background-image: url("logo.png");
-                background-repeat: no-repeat;
-                background-size: contain;
-                background-position-x: 50%;
-                height: 4em;
-                width: 3em;
-                display: block;
-                margin: auto;
-                margin-top: .5em;
-                margin-bottom: 1em;
             }
 
             /*#navclicker:checked + .navdropdown {height: 300px;}*/
@@ -971,7 +951,7 @@
                     document.getElementById("_faq" + lastFaq).style.borderTop = "0px";
                 }
                 document.getElementById("_faq" + faq).style.height = faqHeight[faq];
-                document.getElementById("_faq" + faq).style.borderTop = "2px solid #B85042";
+                document.getElementById("_faq" + faq).style.borderTop = "2px solid #fe5060";
                 lastFaq = faq;
             }
 
@@ -984,7 +964,8 @@
 
                 <a href='https://opensea.io/collection/gunrack-finance-ammo' target='_blank' class='extlinkouter'><img src='opensea.svg' class='extlink' /></a>
                 <a href='https://etherscan.io/address/0x95616a0c10D8114893Fa8544127a2fedd2adCc93' target='_blank' class='extlinkouter'><img src='etherscan.svg' class='extlink' /></a>
-                <a href='https://twitter.com/protoskin' target='_blank' class='extlinkouter'><img src='twitter.svg' class='extlink' /></a>
+                <a href='https://twitter.com/GunrackFinance' target='_blank' class='extlinkouter'><img src='twitter.svg' class='extlink' /></a>
+                <a href='https://discord.gg/4Sc5UEdf' target='_blank' class='extlinkouter'><img src='discord.svg' class='extlink' /></a>
 
             </div>
 
@@ -1003,14 +984,13 @@
             <div id="__mint" class="outerfirst" onmouseover="changeLabel('Mint')">
                 <div class="outersecond">
                     <div class='title' id='_mint'>Mint Swim.skin</div>
-                    <div id="protologo"></div>
                     <div id='wallet'>
                         Please <a href='https://metamask.io/download.html' target='_blank'>install Metamask</a> to start minting.
                     </div>
                     <div id='mintDiv'>
                         <div id='mintDivMid'>
                             <div>
-                                Number of Tokens to mint:&nbsp;&nbsp;<select id="amount" style="padding: .4em 1.5em .4em .7em; border-radius: .5em;">
+                                Number of Tokens to mint:&nbsp;&nbsp;<select id="amount">
                                     <option value='1'>1</option>
                                     <option value='2'>2</option>
                                     <option value='3'>3</option>
@@ -1025,14 +1005,13 @@
                                 <div id='currentsupply' class='supply'></div><div id='totalsupply' class='supply'>/ 7,777 minted</div>
                             </div>
                         </div>
-                        <div class='paragraph' id='mintopen' style="font-size:1.5em;">
+                        <div class='paragraph' id='mintopen' style="font-size:2em;">
                             <p style='text-align: center;'>
-                                <div>Minting goes live:</div>
-                                <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;border: 2px solid #B85042; border-radius: 1em; padding: .2em .5em .2em .5em; margin-top: .1em; background: #ffffff; display: inline-block;">21 September 2022, 16:00 UTC</div>
+                            Minting goes live: <br />
+                            <b style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;border: 2px solid #B85042; border-radius: 1em;padding: .2em .5em .2em .5em;">21 September 2022, 16:00 UTC</b>
                             </p>
                             <p style='text-align: center;'>
-                                <div>Mint price per token:</div>
-                                <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;border: 2px solid #B85042; border-radius: 1em; padding: .2em .5em .2em .5em; margin-top: .1em; background: #ffffff; display: inline-block;">0.02 ETH</div>
+                            Mint price per token: <b style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">0.02 ETH</b>
                             </p>
                         </div>
                         <div id="mintlottie"></div>
@@ -1106,10 +1085,18 @@
                         <table id="roadmaptable">
                             <tr class="rmtr">
                                 <td class="col1">
+                                    <currency>Ξ20</currency>
+                                </td>
+                                <td class="col2">
+                                    Invest <currency>Ξ10</currency> into marketing and <currency>Ξ10</currency> into a raffle for 5 lucky holders of Swim.skin.
+                                </td>
+                            </tr>
+                            <tr class="rmtr">
+                                <td class="col1">
                                     <currency>Ξ50</currency>
                                 </td>
                                 <td class="col2">
-                                    Put <currency>Ξ10</currency> into a raffle for 5 lucky holders of Swim.skin.
+                                    Put another <currency>Ξ10</currency> into a raffle for 5 lucky holders of Swim.skin.
                                 </td>
                             </tr>
                             <tr class="rmtr">
@@ -1174,7 +1161,7 @@
 
                         <label for="faq3" id="faq3sel" class="faqsel">What are our ownership rights?</label>
                         <input type="checkbox" id="faq3" class='faqcheck' onclick="showfaq(3)">
-                        <div id="_faq3" class="faqbody">By minting an NFT, the holder gains all rights to the specific artwork depicted in the given Swim.skin NFT. This includes the artwork in the original online copy as well as any future reproductions made by the Swim.skin Team - such reproductions will only be made at the request of and/or with the permission of holders.</div>
+                        <div id="_faq3" class="faqbody">By minting an NFT, we gain exclusive rights to the artwork depicted in it. This includes the artwork in the original online copy as well as any future reproductions made by the Swim.skin Team - such reproductions will only be made at the request of and/or with the permission of holders.</div>
 
                         <label for="faq4" id="faq4sel" class="faqsel">How many Swim.skin NFTs can we mint?</label>
                         <input type="checkbox" id="faq4" class='faqcheck' onclick="showfaq(4)">
@@ -1205,7 +1192,7 @@
                     <div id="member1">
                         <div id="member1img" class="memberimg"></div>
                             <p style="text-align:center;">
-                                <font style='font-family:zuka; font-size: 2em; color:#505050;margin:auto;'>Eureka</font>
+                                <font style='font-family:zuka; font-size: 2em; color:#505050;margin:auto;'>Sae Raa</font>
                             </p>
                             <p>
                                 Our leader and chief community officer. The vision behind Swim.skin was born out of Sae's love for fashion and interest in the bounties of web3.
@@ -1272,7 +1259,7 @@
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
-                path: "https://assets10.lottiefiles.com/packages/lf20_unobwjsb.json"
+                path: "https://assets7.lottiefiles.com/packages/lf20_q8buwK.json"
             });
 
             svgObj = document.getElementById("roadmaplottie");
