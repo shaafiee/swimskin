@@ -923,9 +923,6 @@
                 navHeight = document.getElementById("navdropdown").getBoundingClientRect().height;
                 document.getElementById("navdropdown").style.height = "0px";
                 document.getElementById("navdropdown").style.visibility = "visible";
-                if (window.mobileAndTabletCheck()) {
-                    document.body.style.fontSize = '2em';
-                }
                 for (let i = 1; i <= 8; i++) {
                     faqHeight[i] = document.getElementById("_faq" + i).getBoundingClientRect().height;
                     document.getElementById("_faq" + i).style.visibility = "visible";
