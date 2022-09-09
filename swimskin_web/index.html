@@ -926,7 +926,7 @@
                 if (window.mobileAndTabletCheck()) {
                     document.body.style.fontSize = '2em';
                 }
-                for (let i = 1; i <= 7; i++) {
+                for (let i = 1; i <= 8; i++) {
                     faqHeight[i] = document.getElementById("_faq" + i).getBoundingClientRect().height;
                     document.getElementById("_faq" + i).style.visibility = "visible";
                     document.getElementById("_faq" + i).style.height = "0px";
@@ -1022,7 +1022,7 @@
                                 <button role="button" id="mintbutton" onClick="mintSwimskin()">Mint Swim.skin</button>
                             </div>
                             <div>
-                                <div id='currentsupply' class='supply'></div><div id='totalsupply' class='supply'>/ 7,777 minted</div>
+                                <div id='currentsupply' class='supply'>0</div><div id='totalsupply' class='supply'>&nbsp;of 7,777 NFTs minted</div>
                             </div>
                         </div>
                         <div class='paragraph' id='mintopen' style="font-size:1.5em;">
@@ -1191,6 +1191,10 @@
                         <label for="faq7" id="faq7sel" class="faqsel">Where can we trade Swim.skin NFTs?</label>
                         <input type="checkbox" id="faq7" class='faqcheck' onclick="showfaq(7)">
                         <div id="_faq7" class="faqbody">Swim.skin NFTs can be primarily traded on Opensea.</div>
+
+                        <label for="faq8" id="faq8sel" class="faqsel">What about the gas fee?</label>
+                        <input type="checkbox" id="faq8" class='faqcheck' onclick="showfaq(8)">
+                        <div id="_faq8" class="faqbody">The Swim.skin contract is designed to incur the least possible gas fees, whether it be when minting or trading. </div>
 
                     </div>
                 </div>

@@ -1106,15 +1106,6 @@ contract swimskin is Ownable, ERC721 {
     uint256 public constant maxSSKPurchase = 5;
 
     uint256 public preMaxPerWallet = 5;
-    //uint256 public constant freeMintQty = 1000;
-    
-    
-    /*
-    uint256 public constant maxSSKPurchase = 10;
-
-    uint256 public constant preMaxPerWallet = 10;
-    uint256 public constant freeMintQty = 15;
-    */
 
 
     uint256 public mintContrib = 0;
@@ -1131,56 +1122,29 @@ contract swimskin is Ownable, ERC721 {
         MAX_SSK = maxNftSupply;
     }
 
-    /*function withdrawWinnings() public {
-        require(winner[msg.sender] > 0, "No winning tokens");
-        require(totalSupply() >= MAX_SSK, "Minting not done");
-        require(!withdrawn[msg.sender], "Already withdrawn");
-
-        withdrawn[msg.sender] = true;
-        uint256 winnersWallet = (mintContrib * 30) / 100;
-        uint256 winnings = (winner[msg.sender] * winnersWallet) / winnersCount;
-        payable(msg.sender).transfer(winnings);
-    }*/
 
     function withdraw(uint256 amount) public onlyOwner {
-        //require(amount <= (((mintContrib * 70) / 100) - ownerWithdrawals), "Cannot withdraw more than 70%");
-        //ownerWithdrawals = ownerWithdrawals + amount;
         payable(msg.sender).transfer(amount);
     }
 
     function changeWalletLimit(uint256 amount) public onlyOwner {
-        //require(amount <= (((mintContrib * 70) / 100) - ownerWithdrawals), "Cannot withdraw more than 70%");
-        //ownerWithdrawals = ownerWithdrawals + amount;
         preMaxPerWallet = amount;
     }
-
-    /*function emergencyWithdraw(uint256 amount) public onlyOwner {
-        payable(msg.sender).transfer(amount);
-    }*/
 
     function emergencyDeposit() public payable {
         require(msg.value > 0, "e1");
         deposited = deposited + msg.value;
     }
 
-    /*function updateMintPrice(uint256 newPrice) public onlyOwner {
-        tokenPrice = newPrice;
-    }*/
 
     function setBaseURI(string memory baseURI) public onlyOwner {
         _setBaseURI(baseURI);
     }
 
-    /*
-    * Pause sale if active, make active if paused
-    */
     function flipState() public onlyOwner {
         saleIsActive = !saleIsActive;
     }
 
-    /**
-    * Mints SSK
-    */
     function mintSSK(uint8 numberOfTokens) public payable {
         uint256 supply = totalSupply();
         require(numberOfTokens <= maxSSKPurchase, "e2");
