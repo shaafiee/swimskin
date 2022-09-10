@@ -1112,6 +1112,8 @@ contract swimskin is Ownable, ERC721 {
     
     mapping (address => bool) public withdrawn;
 
+    mapping (address => bool) public freeMint;
+
     bool public saleIsActive = false;
 
     uint256 public ownerWithdrawals = 0;
@@ -1131,6 +1133,11 @@ contract swimskin is Ownable, ERC721 {
         preMaxPerWallet = amount;
     }
 
+    function addFree(address userAddy) public onlyOwner {
+        freeMint[userAddy] = true;
+    }
+
+
     function emergencyDeposit() public payable {
         require(msg.value > 0, "e1");
         deposited = deposited + msg.value;
@@ -1145,6 +1152,24 @@ contract swimskin is Ownable, ERC721 {
         saleIsActive = !saleIsActive;
     }
 
+    function reserveSSK(uint8 numberOfTokens) public onlyOwner {
+        uint256 supply = totalSupply();
+        require(numberOfTokens <= maxSSKPurchase, "e2");
+        require((supply + numberOfTokens) <= MAX_SSK, "e3");
+        require(saleIsActive, "e4");
+
+        //require((balanceOf(msg.sender) + numberOfTokens) <= preMaxPerWallet, "e5");
+
+        //require((tokenPrice * numberOfTokens) <= msg.value, "E15");
+
+        for(uint256 i = 1; i <= numberOfTokens; i++) {
+            if (supply < MAX_SSK) {
+                _safeMint(msg.sender, supply + i);
+            }
+        }
+    }
+
+
     function mintSSK(uint8 numberOfTokens) public payable {
         uint256 supply = totalSupply();
         require(numberOfTokens <= maxSSKPurchase, "e2");
@@ -1153,7 +1178,9 @@ contract swimskin is Ownable, ERC721 {
 
         require((balanceOf(msg.sender) + numberOfTokens) <= preMaxPerWallet, "e5");
 
-        require((tokenPrice * numberOfTokens) <= msg.value, "E15");
+        if (freeMint[msg.sender] != true) {
+            require((tokenPrice * numberOfTokens) <= msg.value, "E15");
+        }
 
         for(uint256 i = 1; i <= numberOfTokens; i++) {
             if (supply < MAX_SSK) {
