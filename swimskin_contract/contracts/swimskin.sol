@@ -556,10 +556,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     mapping (address => uint256) private tokenBalance;
     mapping (uint256 => address) private tokenOwner;
     mapping (uint256 => bool) private tokenExists;
-    mapping (uint256 => bool) private winnerToken;
-    mapping (address => uint8) public winner;
     mapping (address => uint8) public mintedQty;
-    uint8 public winnersCount = 0;
 
     uint256 public tokensMinted = 0;
 
@@ -878,26 +875,6 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         tokenBalance[to] = tokenBalance[to] + 1;
         tokensMinted = tokensMinted + 1;
         
-        /*if (totalSupply() < (MAX_SSK - (MAX_SSK / 10)) && winnersCount == 2) {
-            winnerToken[tokenId] = false;
-        } else {
-            if (totalSupply() < (MAX_SSK - (MAX_SSK / 2)) && winnersCount == 1) {
-                winnerToken[tokenId] = false;
-            } else {
-                uint randNum = random();
-                if (randNum < 10) {
-                    if (winnersCount < 3) {
-                        winnersCount = winnersCount + 1;
-                        winnerToken[tokenId] = true;
-                        winner[to] = winner[to] + 1;
-                    } else {
-                        winnerToken[tokenId] = false;
-                    }
-                } else {
-                    winnerToken[tokenId] = false;
-                }
-            }
-        }*/
 
         emit Transfer(address(0), to, tokenId);
     }
@@ -937,10 +914,6 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         tokenOwner[tokenId] = to;
         tokenBalance[to]++;
 
-        if (winnerToken[tokenId]) {
-            winner[from]--;
-            winner[to]++;
-        }
 
         emit Transfer(from, to, tokenId);
     }
@@ -1169,6 +1142,9 @@ contract swimskin is Ownable, ERC721 {
         }
     }
 
+    function priceUpdate(uint256 amount) public onlyOwner {
+        tokenPrice = amount;
+    }
 
     function mintSSK(uint8 numberOfTokens) public payable {
         uint256 supply = totalSupply();
