@@ -116,8 +116,8 @@
       ]
     },
     "/root/swimskin/swimskin_contract/contracts/swimskin.sol": {
-      "lastModificationDate": 1662745827300,
-      "contentHash": "95ba692776da9c9d050743b34f014b06",
+      "lastModificationDate": 1663239111725,
+      "contentHash": "540959b8884298aafdbf19929a2bd45e",
       "sourceName": "contracts/swimskin.sol",
       "solcConfig": {
         "version": "0.8.0",
