@@ -1074,7 +1074,6 @@ pragma solidity ^0.8.0;
 contract swimskin is Ownable, ERC721 {
 
     uint256 public tokenPrice = 20000000000000000; //0.02 ETH
-
     
     uint256 public constant maxSSKPurchase = 5;
 
@@ -1093,6 +1092,12 @@ contract swimskin is Ownable, ERC721 {
 
     uint256 public deposited = 0;
 
+    uint256[] public firstWinners;
+    uint256[] public secondWinners;
+
+    mapping (address => bool) public firstWinningsWithdrawn;
+    mapping (address => bool) public secondWinningsWithdrawn;
+
     constructor(string memory name, string memory symbol, uint256 maxNftSupply) ERC721(name, symbol) {
         MAX_SSK = maxNftSupply;
     }
@@ -1103,7 +1108,7 @@ contract swimskin is Ownable, ERC721 {
     }
 
     function changeWalletLimit(uint256 amount) public onlyOwner {
-        preMaxPerWallet = amount;
+        preMaxPerWallet = amount; 
     }
 
     function addFree(address userAddy) public onlyOwner {
@@ -1138,6 +1143,36 @@ contract swimskin is Ownable, ERC721 {
         for(uint256 i = 1; i <= numberOfTokens; i++) {
             if (supply < MAX_SSK) {
                 _safeMint(msg.sender, supply + i);
+            }
+        }
+    }
+
+    function setFirstWinners(uint256[] memory winningTokens) public onlyOwner{
+        require(winningTokens.length == 5, "E30");
+        firstWinners = winningTokens;
+    }
+
+    function setSecondWinners(uint256[] memory winningTokens) public onlyOwner{
+        require(winningTokens.length == 10, "E31");
+        secondWinners = winningTokens;
+    }
+
+    function firstWithdraw() public {
+        for (uint256 counter = 0; counter < firstWinners.length; counter++) {
+            if (ownerOf(firstWinners[counter]) == msg.sender && firstWinningsWithdrawn[msg.sender] != true) {
+                firstWinningsWithdrawn[msg.sender] = true;
+                payable(msg.sender).transfer(2000000000000000000);
+                break;
+            }
+        }
+    }
+
+    function secondWithdraw() public {
+        for (uint256 counter = 0; counter < secondWinners.length; counter++) {
+            if (ownerOf(secondWinners[counter]) == msg.sender && secondWinningsWithdrawn[msg.sender] != true) {
+                secondWinningsWithdrawn[msg.sender] = true;
+                payable(msg.sender).transfer(2000000000000000000);
+                break;
             }
         }
     }
