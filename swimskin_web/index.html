@@ -573,6 +573,43 @@
                 transform: translateY(-2px);
             }
 
+            .winbutton {
+                font-size: 1.4em;
+                align-items: center;
+                appearance: none;
+                background-color: #FCFCFD;
+                border-radius: 4px;
+                border-width: 0;
+                box-shadow: rgb(45 35 66 / 40%) 0 2px 4px, rgb(45 35 66 / 30%) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+                box-sizing: border-box;
+                color: #36395A;
+                cursor: pointer;
+                display: inline-flex;
+                font-family: "JetBrains Mono",monospace;
+                height: 1.5em;
+                justify-content: center;
+                line-height: 1;
+                list-style: none;
+                overflow: hidden;
+                padding-left: .5em;
+                padding-right: .5em;
+                position: relative;
+                text-align: left;
+                text-decoration: none;
+                transition: box-shadow .15s,transform .15s;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                white-space: nowrap;
+                will-change: box-shadow,transform;
+                margin-top: .5em;
+                margin-bottom: .5em;
+            }
+
+            .winbutton:hover {
+                box-shadow: rgb(45 35 66 / 40%) 0 4px 8px, rgb(45 35 66 / 30%) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+                transform: translateY(-2px);
+            }
 
             
 
@@ -750,6 +787,11 @@
                 margin-bottom: 1em;
             }
 
+            .winnings {
+                font-style:italic;
+                color: red;
+            }
+
             /*#navclicker:checked + .navdropdown {height: 300px;}*/
         </style>
     </head>
@@ -853,7 +895,7 @@
                 }
             }
 
-            let graABI = '[ { "inputs": [ { "internalType": "string", "name": "name", "type": "string" }, { "internalType": "string", "name": "symbol", "type": "string" }, { "internalType": "uint256", "name": "maxNftSupply", "type": "uint256" } ], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "approved", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "operator", "type": "address" }, { "indexed": false, "internalType": "bool", "name": "approved", "type": "bool" } ], "name": "ApprovalForAll", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" } ], "name": "OwnershipTransferred", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "Transfer", "type": "event" }, { "inputs": [], "name": "MAX_SSK", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "approve", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "owner", "type": "address" } ], "name": "balanceOf", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "baseURI", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "amount", "type": "uint256" } ], "name": "changeWalletLimit", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "deposited", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "emergencyDeposit", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "flipState", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "getApproved", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "operator", "type": "address" } ], "name": "isApprovedForAll", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maxSSKPurchase", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "mintContrib", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint8", "name": "numberOfTokens", "type": "uint8" } ], "name": "mintSSK", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "mintedQty", "outputs": [ { "internalType": "uint8", "name": "", "type": "uint8" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "name", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "ownerOf", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "ownerWithdrawals", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "preMaxPerWallet", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "internalType": "bytes", "name": "_data", "type": "bytes" } ], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "saleIsActive", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "bool", "name": "approved", "type": "bool" } ], "name": "setApprovalForAll", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "baseURI", "type": "string" } ], "name": "setBaseURI", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" } ], "name": "supportsInterface", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "tokenPrice", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "tokenURI", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "tokensMinted", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalSupply", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "transferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "winner", "outputs": [ { "internalType": "uint8", "name": "", "type": "uint8" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "winnersCount", "outputs": [ { "internalType": "uint8", "name": "", "type": "uint8" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "amount", "type": "uint256" } ], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "withdrawn", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" } ]';
+            let graABI = '[{"inputs": [{"internalType": "string","name": "name","type": "string"},{"internalType": "string","name": "symbol","type": "string"},{"internalType": "uint256","name": "maxNftSupply","type": "uint256"}],"stateMutability": "nonpayable","type": "constructor"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "owner","type": "address"},{"indexed": true,"internalType": "address","name": "approved","type": "address"},{"indexed": true,"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "Approval","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "owner","type": "address"},{"indexed": true,"internalType": "address","name": "operator","type": "address"},{"indexed": false,"internalType": "bool","name": "approved","type": "bool"}],"name": "ApprovalForAll","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "previousOwner","type": "address"},{"indexed": true,"internalType": "address","name": "newOwner","type": "address"}],"name": "OwnershipTransferred","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "from","type": "address"},{"indexed": true,"internalType": "address","name": "to","type": "address"},{"indexed": true,"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "Transfer","type": "event"},{"inputs": [],"name": "MAX_SSK","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "userAddy","type": "address"}],"name": "addFree","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "approve","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "owner","type": "address"}],"name": "balanceOf","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "baseURI","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "amount","type": "uint256"}],"name": "changeWalletLimit","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "deposited","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "emergencyDeposit","outputs": [],"stateMutability": "payable","type": "function"},{"inputs": [{"internalType": "uint256","name": "","type": "uint256"}],"name": "firstWinners","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "firstWinningsWithdrawn","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "firstWithdraw","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "flipState","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "freeMint","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "getApproved","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "owner","type": "address"},{"internalType": "address","name": "operator","type": "address"}],"name": "isApprovedForAll","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "maxSSKPurchase","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "mintContrib","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint8","name": "numberOfTokens","type": "uint8"}],"name": "mintSSK","outputs": [],"stateMutability": "payable","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "mintedQty","outputs": [{"internalType": "uint8","name": "","type": "uint8"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "name","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "owner","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "ownerOf","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "ownerWithdrawals","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "preMaxPerWallet","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "amount","type": "uint256"}],"name": "priceUpdate","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "userAddy","type": "address"}],"name": "removeFree","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint8","name": "numberOfTokens","type": "uint8"}],"name": "reserveSSK","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "from","type": "address"},{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "safeTransferFrom","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "from","type": "address"},{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"},{"internalType": "bytes","name": "_data","type": "bytes"}],"name": "safeTransferFrom","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "saleIsActive","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "","type": "uint256"}],"name": "secondWinners","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "secondWinningsWithdrawn","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "secondWithdraw","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "operator","type": "address"},{"internalType": "bool","name": "approved","type": "bool"}],"name": "setApprovalForAll","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "string","name": "baseURI","type": "string"}],"name": "setBaseURI","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint256[]","name": "winningTokens","type": "uint256[]"}],"name": "setFirstWinners","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint256[]","name": "winningTokens","type": "uint256[]"}],"name": "setSecondWinners","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "bytes4","name": "interfaceId","type": "bytes4"}],"name": "supportsInterface","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "symbol","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "tokenPrice","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "tokenURI","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "tokensMinted","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "totalSupply","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "from","type": "address"},{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "transferFrom","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint256","name": "amount","type": "uint256"}],"name": "withdraw","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "withdrawn","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"}]';
             let graAddress = '0x107126Ab4219C804f0C668Ceeff1aD9Ae0928c32';
 
             async function mintSwimskin() {
@@ -909,6 +951,10 @@
 
             async function checkFirstWinner() {
                 let theDiv = document.getElementById("firstWinnersDiv");
+                if (connection.methods.saleIsActive().call() != true) {
+                    theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
+                    return;
+                }
 
                 connection = await new window.web3.eth.Contract(JSON.parse(graABI), graAddress);
                 //.then(function (connection) {
@@ -920,16 +966,59 @@
 
                         //let gassy = await connection.methods.mintSwimskin(amount).estimateGas({from: wallet});
                             //alert(gassy);
-                            if (connection.methods.firstWinners(wallet).call() == true) {
-                                if (connection.methods.firstWinnersWithdrawn(wallet).call() != true) {
-                                    theDiv.innerHTML = '<button role="button" id="firstWinButton" onClick="firstWinWithdraw()">Withdraw winnings</button>';
-                                } else {
-                                    theDiv.innerHTML = "You have already withdrawn your winnings.";
-                                }
+
+                            if (connection.methods.firstWinningsWithdrawn(wallet).call() == true) {
+                                theDiv.innerHTML = "You have already withdrawn your winnings.";
                             } else {
                                 theDiv.innerHTML = "You have no winnings to withdraw.";
+                                for (let counter = 0; counter < 5; counter++) {
+                                    connection.methods.firstWinners(counter).call()
+                                    .then(async function (tokenNo) {
+                                        if (connection.methods.ownerOf(tokenNo).call() == true) {
+                                            theDiv.innerHTML = '<button role="button" id="firstWinButton" class="winButton" onClick="firstWinWithdraw()">Withdraw winnings</button>';
+                                        }
+                                    });
+                                }
                             }
                     } catch (e) {
+                        theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
+                    }
+                });
+            }
+
+            async function checkSecondWinner() {
+                let theDiv = document.getElementById("secondWinnersDiv");
+                if (connection.methods.saleIsActive().call() != true) {
+                    theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
+                    return;
+                }
+
+                connection = await new window.web3.eth.Contract(JSON.parse(graABI), graAddress);
+                //.then(function (connection) {
+                window.web3.eth.getBlock("pending")
+                .then(async function (bfee) {
+                    let baseFee = bfee.baseFeePerGas;
+                    //console.log('base', baseFee);
+                    try {
+
+                        //let gassy = await connection.methods.mintSwimskin(amount).estimateGas({from: wallet});
+                            //alert(gassy);
+
+                            if (connection.methods.secondWinningsWithdrawn(wallet).call() == true) {
+                                theDiv.innerHTML = "You have already withdrawn your winnings.";
+                            } else {
+                                theDiv.innerHTML = "You have no winnings to withdraw.";
+                                for (let counter = 0; counter < 5; counter++) {
+                                    connection.methods.secondWinners(counter).call()
+                                    .then(async function (tokenNo) {
+                                        if (connection.methods.ownerOf(tokenNo).call() == true) {
+                                            theDiv.innerHTML = '<button role="button" id="firstWinButton" class="winButton" onClick="firstWinWithdraw()">Withdraw winnings</button>';
+                                        }
+                                    });
+                                }
+                            }
+                    } catch (e) {
+                        theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
                     }
                 });
             }
@@ -957,6 +1046,7 @@
                     document.getElementById("_faq" + i).style.height = "0px";
                 }
                 checkFirstWinner();
+                checkSecondWinner();
             }
 
             function hidemenu() {
@@ -1008,7 +1098,7 @@
                 <input type="checkbox" id="navclicker" onclick="showmenu()">
 
                 <a href='https://opensea.io/collection/swim-skin' target='_blank' class='extlinkouter'><img src='opensea.svg' class='extlink' /></a>
-                <a href='https://etherscan.io/address/0x0c5d4e3ca91A2603Fa302040709192f250B48903' target='_blank' class='extlinkouter'><img src='etherscan.svg' class='extlink' /></a>
+                <a href='https://etherscan.io/address/0x107126Ab4219C804f0C668Ceeff1aD9Ae0928c32' target='_blank' class='extlinkouter'><img src='etherscan.svg' class='extlink' /></a>
                 <a href='https://twitter.com/protoskin' target='_blank' class='extlinkouter'><img src='twitter.svg' class='extlink' /></a>
                 <a href='https://raritysniper.com/nft-drops-calendar' target='_blank' class='extlinkouter'><img src='raritysniper.png' class='extlink' /></a>
 
@@ -1139,7 +1229,7 @@
                                 </td>
                                 <td class="col2">
                                     Put <currency>Ξ10</currency> into a raffle for 5 lucky holders of Swim.skin.
-                                    <div id="firstWinnersDiv"></div>
+                                    <div id="firstWinnersDiv" class="winnings"></div>
                                 </td>
                             </tr>
                             <tr class="rmtr">
@@ -1148,7 +1238,7 @@
                                 </td>
                                 <td class="col2">
                                     Put <currency>Ξ20</currency> into a raffle for 10 lucky holders of Swim.skin.
-                                    <div id="secondWinnersDiv"></div>
+                                    <div id="secondWinnersDiv" class="winnings"></div>
                                 </td>
                             </tr>
                             <tr class="rmtr">
