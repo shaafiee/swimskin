@@ -572,7 +572,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     //mapping (uint256 => string) private _tokenURIs;
 
     // Base URI
-    string private _baseURI = "QmebzTm1ncigL9W3Euevn8gqg7NSFQ1s6hQxM5mRDwjfLP";
+    string private _baseURI = "QmXXbUQLsL7iDjTdmqKVWAMzx6C9Sds4na2kvr8BFJCyLr";
 
     /*
      *     bytes4(keccak256('balanceOf(address)')) == 0x70a08231
@@ -1115,6 +1115,9 @@ contract swimskin is Ownable, ERC721 {
         freeMint[userAddy] = true;
     }
 
+    function removeFree(address userAddy) public onlyOwner {
+        freeMint[userAddy] = false;
+    }
 
     function emergencyDeposit() public payable {
         require(msg.value > 0, "e1");
