@@ -949,6 +949,9 @@
                 });
             }
 
+            let secondWinWithdrawn = false;
+            let firstWinWithdrawn = false;
+
             async function checkFirstWinner() {
                 let theDiv = document.getElementById("firstWinnersDiv");
                 if (connection.methods.saleIsActive().call() != true) {
@@ -969,6 +972,7 @@
 
                             if (connection.methods.firstWinningsWithdrawn(wallet).call() == true) {
                                 theDiv.innerHTML = "You have already withdrawn your winnings.";
+                                firstWinWithdrawn = true;
                             } else {
                                 theDiv.innerHTML = "You have no winnings to withdraw.";
                                 for (let counter = 0; counter < 5; counter++) {
@@ -984,6 +988,9 @@
                         theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
                     }
                 });
+                if (!firstWinWithdrawn) {
+                    window.setTimeout(checkFirstWinner, 60000);
+                }
             }
 
             async function checkSecondWinner() {
@@ -1006,13 +1013,14 @@
 
                             if (connection.methods.secondWinningsWithdrawn(wallet).call() == true) {
                                 theDiv.innerHTML = "You have already withdrawn your winnings.";
+                                secondWinWithdrawn = true;
                             } else {
                                 theDiv.innerHTML = "You have no winnings to withdraw.";
                                 for (let counter = 0; counter < 5; counter++) {
                                     connection.methods.secondWinners(counter).call()
                                     .then(async function (tokenNo) {
                                         if (connection.methods.ownerOf(tokenNo).call() == true) {
-                                            theDiv.innerHTML = '<button role="button" id="firstWinButton" class="winButton" onClick="firstWinWithdraw()">Withdraw winnings</button>';
+                                            theDiv.innerHTML = '<button role="button" id="firstWinButton" class="winButton" onClick="secondWinWithdraw()">Withdraw winnings</button>';
                                         }
                                     });
                                 }
@@ -1021,7 +1029,83 @@
                         theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
                     }
                 });
+                if (!secondWinWithdrawn) {
+                    window.setTimeout(checkSecondWinner, 60000);
+                }
             }
+
+            async function firstWinWithdraw() {
+                let theDiv = document.getElementById("secondWinnersDiv");
+                if (connection.methods.saleIsActive().call() != true) {
+                    showNotification("Minting is not live yet.");
+                    return;
+                }
+
+                connection = await new window.web3.eth.Contract(JSON.parse(graABI), graAddress);
+                //.then(function (connection) {
+                window.web3.eth.getBlock("pending")
+                .then(async function (bfee) {
+                    let baseFee = bfee.baseFeePerGas;
+                    //console.log('base', baseFee);
+                    try {
+
+                        //let gassy = await connection.methods.mintSwimskin(amount).estimateGas({from: wallet});
+                            //alert(gassy);
+
+                            if (connection.methods.secondWinningsWithdrawn(wallet).call() == true) {
+                                theDiv.innerHTML = "You have already withdrawn your winnings.";
+                                firstWinWithdrawn = true;
+                            } else {
+                                connection.methods.firstWithdraw().send({from: wallet, value: 0})
+                                .then(async function (){
+                                    showNotification("Withdrawal transaction has been sent.");
+                                })
+                            }
+                    } catch (e) {
+                        theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
+                    }
+                });
+                if (!firstWinWithdrawn) {
+                    window.setTimeout(checkFirstWinner, 60000);
+                }
+            }
+
+            async function secondWinWithdraw() {
+                let theDiv = document.getElementById("secondWinnersDiv");
+                if (connection.methods.saleIsActive().call() != true) {
+                    showNotification("Minting is not live yet.");
+                    return;
+                }
+
+                connection = await new window.web3.eth.Contract(JSON.parse(graABI), graAddress);
+                //.then(function (connection) {
+                window.web3.eth.getBlock("pending")
+                .then(async function (bfee) {
+                    let baseFee = bfee.baseFeePerGas;
+                    //console.log('base', baseFee);
+                    try {
+
+                        //let gassy = await connection.methods.mintSwimskin(amount).estimateGas({from: wallet});
+                            //alert(gassy);
+
+                            if (connection.methods.secondWinningsWithdrawn(wallet).call() == true) {
+                                theDiv.innerHTML = "You have already withdrawn your winnings.";
+                                secondWinWithdrawn = true;
+                            } else {
+                                connection.methods.secondWithdraw().send({from: wallet, value: 0})
+                                .then(async function (){
+                                    showNotification("Withdrawal transaction has been sent.");
+                                })
+                            }
+                    } catch (e) {
+                        theDiv.innerHTML = "A button for collecting your winnings (if any) will appear here.";
+                    }
+                });
+                if (!secondWinWithdrawn) {
+                    window.setTimeout(checkSecondWinner, 60000);
+                }
+            }
+
 
 
             let navHeight = 0;
@@ -1271,6 +1355,22 @@
                                     For every <currency>Ξ6000</currency> of secondary sales volume mark reached, <currency>Ξ150</currency> will be spent on holding an event. The type of event and its location will be decided by the Swim.skin community.
                                 </td>
                             </tr>
+                            <tr class="rmtr">
+                                <td class="col1">
+                                    <div id="bullet3"></div>
+                                </td>
+                                <td class="col2">
+                                    Launch MVP of the <currency>Protoskin Fashion Design Tool</currency> within 3 months of minting all 7,777 SSK tokens. Only holders will have access to this MVP.
+                                </td>
+                            </tr>
+                            <tr class="rmtr">
+                                <td class="col1">
+                                    <div id="bullet4"></div>
+                                </td>
+                                <td class="col2">
+                                    Launch the <currency>Protoskin Fashion Design System</currency> within the 12 months after launching the MVP. Holders will have full access to this cloud system, whilst the rest will need to pay a membership fee.
+                                </td>
+                            </tr>
                         </table>
                     </div>
 
@@ -1428,6 +1528,28 @@
 
             lottie.loadAnimation({
                 container: document.getElementById("bullet2"),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: "https://assets7.lottiefiles.com/packages/lf20_lbpgvceh.json"
+            });
+
+            svgObj = document.getElementById("bullet3");
+            svgObj.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+            lottie.loadAnimation({
+                container: document.getElementById("bullet3"),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: "https://assets7.lottiefiles.com/packages/lf20_lbpgvceh.json"
+            });
+
+            svgObj = document.getElementById("bullet4");
+            svgObj.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+            lottie.loadAnimation({
+                container: document.getElementById("bullet4"),
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
