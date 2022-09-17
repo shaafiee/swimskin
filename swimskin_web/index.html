@@ -379,18 +379,15 @@
                 display: inline-flex;
                 padding-bottom: 4px;
                 background:#A7BEAE;
-                border-radius: 0 0 6px 6px;
+                border-radius: 0 0 .2em .2em;
                 vertical-align: middle;
                 line-height: 1.5em;
                 font-size: 1.5em;
-                padding-left: 12px;
-                padding-right: 12px;
+                padding-left: .2em;
+                padding-right: .2em;
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;            
             }
 
-            .mobilenavbar {
-                border-radius: 6px 6px 6px 6px;
-            }
 
 
 
@@ -820,7 +817,7 @@
 
             if (window.mobileAndTabletCheck()) {
                 document.body.classList.add("enlarged");
-                document.getElementById("navbar").classList.add("mobilenavbar");
+                document.getElementById("navbar").style.borderRadius = ".6em;"
             }
 
             async function getAccounts(todo) {
@@ -1190,7 +1187,7 @@
                 <a href='https://opensea.io/collection/swim-skin' target='_blank' class='extlinkouter'><img src='opensea.svg' class='extlink' /></a>
                 <a href='https://etherscan.io/address/0x107126Ab4219C804f0C668Ceeff1aD9Ae0928c32' target='_blank' class='extlinkouter'><img src='etherscan.svg' class='extlink' /></a>
                 <a href='https://twitter.com/protoskin' target='_blank' class='extlinkouter'><img src='twitter.svg' class='extlink' /></a>
-                <a href='https://discord.gg/NcfDT9BYXn' target='_blank' class='extlinkouter'><img src='discord.svg' class='extlink' /></a>
+                <!--<a href='https://discord.gg/NcfDT9BYXn' target='_blank' class='extlinkouter'><img src='discord.svg' class='extlink' /></a>-->
                 <a href='https://raritysniper.com/nft-drops-calendar' target='_blank' class='extlinkouter'><img src='raritysniper.png' class='extlink' /></a>
 
             </div>
