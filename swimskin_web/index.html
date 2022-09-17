@@ -818,6 +818,8 @@
 
             if (window.mobileAndTabletCheck()) {
                 document.body.classList.add("enlarged");
+                document.getElementById("navdropdown").style.width = document.getElementById("navbar").getBoundingClientRect().width - 20;
+                document.getElementById("navdropdown").style.left = document.getElementById("navbar").getBoundingClientRect().left;
             }
 
             async function getAccounts(todo) {
