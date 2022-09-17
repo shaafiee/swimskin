@@ -373,6 +373,7 @@
                 text-align: center;
             }
 
+
             #navbar {
                 z-index: 90;
                 display: inline-flex;
@@ -385,6 +386,10 @@
                 padding-left: 12px;
                 padding-right: 12px;
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;            
+            }
+
+            .mobilenavbar {
+                border-radius: 6px 6px 6px 6px;
             }
 
 
@@ -815,6 +820,7 @@
 
             if (window.mobileAndTabletCheck()) {
                 document.body.classList.add("enlarged");
+                document.getElementById("navbar").classList.add("mobilenavbar");
             }
 
             async function getAccounts(todo) {
