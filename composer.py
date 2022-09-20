@@ -36,7 +36,7 @@ uniqueCleavage = {0:True, 1:False, 2:True, 3:True, 4:False, 5:False, 6:True, 7:F
 
 
 
-blockchain = {0: "none", 1: "agorand", 2: "avalanche", 3: "binance", 4: "bitcoin", 5: "cardano", 6: "dogecoin", 7: "ethereum", 8: "flow", 9: "solana", 10: "tezos", 11: "tron", 12: "wax"}
+blockchain = {0: "none", 1: "algorand", 2: "avalanche", 3: "binance", 4: "bitcoin", 5: "cardano", 6: "dogecoin", 7: "ethereum", 8: "flow", 9: "solana", 10: "tezos", 11: "tron", 12: "wax"}
 
 blockchainPct = {0:0, 1:3, 2:3, 3:3, 4:3, 5:3, 6:3, 7:7, 8:3, 9:6, 10:3, 11:3, 12:3}
 
@@ -219,7 +219,7 @@ for i in range(1, 20) :
 		necklaceColor = "silver"
 
 	if (hasNecklace) :
-		metadata["attributes"].append({"trait_type":"necklace", "value":necklaceLength + " " + necklaceColor)
+		metadata["attributes"].append({"trait_type":"necklace", "value":necklaceLength + " " + necklaceColor})
 
 		if (longNecklace) :
 			for key in longNecklace:
@@ -236,7 +236,7 @@ for i in range(1, 20) :
 					break
 			metadata["attributes"].append({"trait_type":"pendant", "value":shortNecklace[shortNecklaceSel]})
 	else :
-		metadata["attributes"].append({"trait_type":"necklace", "value":"none")
+		metadata["attributes"].append({"trait_type":"necklace", "value":"none"})
 		metadata["attributes"].append({"trait_type":"pendant", "value":"none"})
 
 	for key in top:
@@ -341,10 +341,14 @@ for i in range(1, 20) :
 	# necklace
 	if hasNecklace:
 		if longNecklace :
-			img2 = Image.open('images/jewellery/long_necklace/' + longNecklace[longNecklaceSel].replace(" ", "_") + '.png')
+			img2 = Image.open('images/jewellery/long_necklace/' + necklaceColor + '.png')
+			img1.paste(img2, (0, 0), img2)
+			img2 = Image.open('images/jewellery/long_necklace/pendant' + longNecklace[longNecklaceSel].replace(" ", "_") + '.png')
 			img1.paste(img2, (0, 0), img2)
 		else :
-			img2 = Image.open('images/jewellery/short_necklace/' + shortNecklace[shortNecklaceSel].replace(" ", "_") + '.png')
+			img2 = Image.open('images/jewellery/short_necklace/' + necklaceColor + '.png')
+			img1.paste(img2, (0, 0), img2)
+			img2 = Image.open('images/jewellery/short_necklace/pendant' + shortNecklace[shortNecklaceSel].replace(" ", "_") + '.png')
 			img1.paste(img2, (0, 0), img2)
 	else :
 		if neckSel > 0:
