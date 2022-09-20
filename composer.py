@@ -144,7 +144,7 @@ for i in range(1, 7778) :
 	metadata["attributes"].append({"trait_type":"background", "value":background[backgroundSel]})
 
 	r = random.randint(1,100)
-	if (r <= 7) :
+	if (r <= 3) :
 		isUnique = True
 
 	if (isUnique) :
@@ -390,4 +390,6 @@ for i in range(1, 7778) :
 	#img1.save("samples/" + str(i) + ".png", format="png")
 
 
-
+	f = open("unique.txt", "w")
+	f.write(lastUnique)
+	f.close()
