@@ -122,6 +122,9 @@ for i in range(1, 20) :
 	topSel = 0
 	pelvicSel = 0
 
+	longNecklaceSel = 0
+	shortNecklaceSel = 0
+
 	includeBlockchain = True
 	includeNavel = True
 	includeCleavage = True
@@ -341,15 +344,17 @@ for i in range(1, 20) :
 	# necklace
 	if hasNecklace:
 		if isLongNecklace :
-			img2 = Image.open('images/jewellery/long_necklace/' + necklaceColor + '.png')
-			img1.paste(img2, (0, 0), img2)
-			img2 = Image.open('images/jewellery/long_necklace/pendant/' + longNecklace[longNecklaceSel].replace(" ", "_") + '.png')
-			img1.paste(img2, (0, 0), img2)
+			if longNecklaceSel > 0:
+				img2 = Image.open('images/jewellery/long_necklace/' + necklaceColor + '.png')
+				img1.paste(img2, (0, 0), img2)
+				img2 = Image.open('images/jewellery/long_necklace/pendant/' + longNecklace[longNecklaceSel].replace(" ", "_") + '.png')
+				img1.paste(img2, (0, 0), img2)
 		else :
-			img2 = Image.open('images/jewellery/short_necklace/' + necklaceColor + '.png')
-			img1.paste(img2, (0, 0), img2)
-			img2 = Image.open('images/jewellery/short_necklace/pendant/' + shortNecklace[shortNecklaceSel].replace(" ", "_") + '.png')
-			img1.paste(img2, (0, 0), img2)
+			if shortNecklaceSel > 0:
+				img2 = Image.open('images/jewellery/short_necklace/' + necklaceColor + '.png')
+				img1.paste(img2, (0, 0), img2)
+				img2 = Image.open('images/jewellery/short_necklace/pendant/' + shortNecklace[shortNecklaceSel].replace(" ", "_") + '.png')
+				img1.paste(img2, (0, 0), img2)
 	else :
 		if neckSel > 0:
 			img2 = Image.open('images/jewellery/neck/' + neck[neckSel].replace(" ", "_") + '.png')
@@ -378,7 +383,8 @@ for i in range(1, 20) :
 	f.write(json.dumps(metadata))
 	f.close()
 
-	img1.save("/mnt/node/swimskin/images/" + str(i) + ".png", format="png")
+	#img1.save("/mnt/node/swimskin/images/" + str(i) + ".png", format="png")
+	img1.save("samples/" + str(i) + ".png", format="png")
 
 
 
