@@ -391,5 +391,5 @@ for i in range(1, 7778) :
 
 
 	f = open("unique.txt", "w")
-	f.write(lastUnique)
+	f.write(str(lastUnique))
 	f.close()
