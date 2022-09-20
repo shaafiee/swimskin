@@ -100,7 +100,7 @@ topBack = {0:False, 1:True, 2:True, 3:True, 4:False, 5:True, 6:True, 7:False, 8:
 
 
 
-for i in range(1, 20) :
+for i in range(1, 30) :
 
 	backgroundSel = 1
 	swimsuitSel = 1
