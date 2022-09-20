@@ -46,9 +46,9 @@ bodyArtifacts = {1: "light shadow", 2: "dark shadow", 3: "highlight", 4: "outlin
 
 
 
-body = {1: "aqua", 2: "beige", 3: "beige athlete", 4: "bronze", 5: "bronze athlete", 6: "brown", 7: "brown athlete", 8: "carbon android", 9: "ceramic android", 10: "cheetah", 11: "cherry", 12: "dark brown", 13: "dark brown athlete", 14: "fitness", 15: "gold", 16: "hulk", 17: "khaki", 18: "khaki athlete", 19: "lemon", 20: "silver", 21: "tigress"}
+body = {1: "brown", 2: "beige", 3: "beige athlete", 4: "bronze", 5: "bronze athlete", 6: "aqua", 7: "brown athlete", 8: "carbon android", 9: "ceramic android", 10: "cheetah", 11: "cherry", 12: "dark brown", 13: "dark brown athlete", 14: "fitness", 15: "gold", 16: "hulk", 17: "khaki", 18: "khaki athlete", 19: "lemon", 20: "silver", 21: "tigress"}
 
-bodyPct = {0:0, 1:2, 2:5, 3:5, 4:4, 5:4, 6:7, 7:7, 8:2, 9:2, 10:2, 11:5, 12:7, 13:7, 14:6, 15:2, 16:2, 17:7, 18:7, 19:4, 20:4, 21:2}
+bodyPct = {0:0, 1:5, 2:5, 3:5, 4:4, 5:4, 6:2, 7:7, 8:2, 9:2, 10:2, 11:5, 12:7, 13:7, 14:6, 15:2, 16:2, 17:7, 18:7, 19:4, 20:4, 21:2}
 
 
 
