@@ -303,6 +303,8 @@ for i in range(1, 20) :
 			includeNavel = False
 		if not swimsuitCleavage[swimsuitSel] :
 			includeCleavage = False
+		if not swimsuitPelvic[swimsuitSel] :
+			includePelvic = False
 
 
 	# blockchain
