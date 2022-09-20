@@ -114,7 +114,7 @@ for i in range(1, 20) :
 	navelSel = 0
 	neckSel = 0
 	hasNecklace = False
-	longNecklace = True
+	isLongNecklace = True
 	goldNecklace = True
 	necklaceLength = "long"
 	necklaceColor = "gold"
@@ -210,7 +210,7 @@ for i in range(1, 20) :
 
 	r = random.randint(1,100)
 	if (r <= 40) :
-		longNecklace = False
+		isLongNecklace = False
 		necklaceLength = "short"
 
 	r = random.randint(1,100)
@@ -221,7 +221,7 @@ for i in range(1, 20) :
 	if (hasNecklace) :
 		metadata["attributes"].append({"trait_type":"necklace", "value":necklaceLength + " " + necklaceColor})
 
-		if (longNecklace) :
+		if (isLongNecklace) :
 			for key in longNecklace:
 				r = random.randint(1,100)
 				if r <= longNecklacePct[key]:
@@ -340,15 +340,15 @@ for i in range(1, 20) :
 
 	# necklace
 	if hasNecklace:
-		if longNecklace :
+		if isLongNecklace :
 			img2 = Image.open('images/jewellery/long_necklace/' + necklaceColor + '.png')
 			img1.paste(img2, (0, 0), img2)
-			img2 = Image.open('images/jewellery/long_necklace/pendant' + longNecklace[longNecklaceSel].replace(" ", "_") + '.png')
+			img2 = Image.open('images/jewellery/long_necklace/pendant/' + longNecklace[longNecklaceSel].replace(" ", "_") + '.png')
 			img1.paste(img2, (0, 0), img2)
 		else :
 			img2 = Image.open('images/jewellery/short_necklace/' + necklaceColor + '.png')
 			img1.paste(img2, (0, 0), img2)
-			img2 = Image.open('images/jewellery/short_necklace/pendant' + shortNecklace[shortNecklaceSel].replace(" ", "_") + '.png')
+			img2 = Image.open('images/jewellery/short_necklace/pendant/' + shortNecklace[shortNecklaceSel].replace(" ", "_") + '.png')
 			img1.paste(img2, (0, 0), img2)
 	else :
 		if neckSel > 0:
