@@ -149,7 +149,8 @@ for i in range(1, 20) :
 
 	if (isUnique) :
 		if (lastUnique < 9) :
-			uniqueSel = lastUnique + 1
+			lastUnique = lastUnique + 1
+			uniqueSel = lastUnique
 		else :
 			isUnique = False
 
