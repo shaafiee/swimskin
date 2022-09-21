@@ -926,6 +926,9 @@
                             .then(response => response.json())
                             .then(data => {
                                     document.cookie = "sessionKey=" + data.psalt.value + "; expires=Mon, 31 Dec 2060 12:00:00 UTC; path=/";
+                                    document.getElementById("messages").innerHTML = "";
+                                    let date = new Date('2022-09-20');
+                                    getLatest(Math.floor(date.getTime()/1000));
                                 }
                             );
 
@@ -1070,6 +1073,7 @@
 
                 checkSessionCookie();
 
+                document.getElementById("messages").innerHTML = "";
                 let date = new Date('2022-09-20');
                 getLatest(Math.floor(date.getTime()/1000));
             }
