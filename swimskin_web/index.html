@@ -936,11 +936,11 @@
 
                         //let gassy = await connection.methods.mintSwimskin(amount).estimateGas({from: wallet});
                             //alert(gassy);
-                            if (connection.methods.freeMint(wallet).call() == true) {
+                            //if (connection.methods.freeMint(wallet).call() == true) {
                                 connection.methods.mintSSK(amount).send({from: wallet, value: 0}); //, gas: 110000, gasPrice: baseFee});
-                            } else {
+                            /*} else {
                                 connection.methods.mintSSK(amount).send({from: wallet, value: window.web3.utils.toWei(contrib.toString(), "ether")}); //, gas: 110000, gasPrice: baseFee});
-                            }
+                            }*/
                     } catch (e) {
                         if (e.message.search('Sale must be active to mint Swim.skin') >= 0) {
                             showNotification("Sale is not yet active.");
@@ -1239,8 +1239,7 @@
                                 <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;border: 2px solid #B85042; border-radius: 1em; padding: .2em .5em .2em .5em; margin-top: .1em; background: #ffffff; display: inline-block;">MINT IS LIVE!</div>
                             </p>
                             <p style='text-align: center;'>
-                                <div>Mint price per token:</div>
-                                <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;border: 2px solid #B85042; border-radius: 1em; padding: .2em .5em .2em .5em; margin-top: .1em; background: #ffffff; display: inline-block;">0.02 ETH</div>
+                                <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;border: 2px solid #B85042; border-radius: 1em; padding: .2em .5em .2em .5em; margin-top: .1em; background: #ffffff; display: inline-block;">IT'S ALL FREE!</div>
                             </p>
                             <p style='text-align: center;'>
                                 <div>Token price will automatically be set to zero if our Ethereum addresses are whitelisted.</div>
