@@ -1152,15 +1152,10 @@
                 msg.setAttribute("class", "messageDiv");
                 let timeDiv = document.createElement("div");
                 timeDiv.setAttribute("class", "timeDiv");
-                let offsetTime;
-                if (! isLocal) {
-                    let date = new Date(cstamp);
-                    let dobj = new Date();
-                    let offset = dobj.getTimezoneOffset();
-                    offsetTime = new Date(date.getTime() + offset * 60 * 1000);
-                } else {
-                    offsetTime = new Date(cstamp);
-                }
+                let date = new Date(cstamp);
+                let dobj = new Date();
+                let offset = dobj.getTimezoneOffset();
+                let offsetTime = new Date(date.getTime() + offset * 60 * 1000);
                 
                 timeDiv.innerHTML = offsetTime.getHours().toString().padStart(2, '0') + ":" + offsetTime.getMinutes().toString().padStart(2, '0') + ":" + offsetTime.getSeconds().toString().padStart(2, '0');
                 
@@ -1175,10 +1170,12 @@
                 let allMsg = document.getElementById("messages")
                 if (lastPostStamp.getDate() == offsetTime.getDate() && lastPostStamp.getMonth() == offsetTime.getMonth() && lastPostStamp.getYear() == offsetTime.getYear()) {
                 } else {
-                    let dateDiv = document.createElement("div");
-                    dateDiv.setAttribute("class", "dateDiv");
-                    dateDiv.innerHTML = offsetTime.getDate().toString().padStart(2, '0') + " " + (offsetTime.getMonth() + 1).toString().padStart(2, '0') + " " + offsetTime.getFullYear();
-                    allMsg.append(dateDiv);
+                    if (! isLocal) {
+                        let dateDiv = document.createElement("div");
+                        dateDiv.setAttribute("class", "dateDiv");
+                        dateDiv.innerHTML = offsetTime.getDate().toString().padStart(2, '0') + " " + (offsetTime.getMonth() + 1).toString().padStart(2, '0') + " " + offsetTime.getFullYear();
+                        allMsg.append(dateDiv);
+                    }
                 }
                 allMsg.append(msg);
                 msg.append(sender);
@@ -1209,7 +1206,7 @@
                             .then(response => response.json())
                             .then(data => {
                                     lastTimestamp = Math.floor(Date.now() / 1000) + 1;
-                                    postMsg(wallet, message, lastTimestamp);
+                                    postMsg(wallet, message, lastTimestamp, true);
                                 }
                             );
             }
