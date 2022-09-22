@@ -835,6 +835,18 @@
                 display: inline-block;
             }
 
+            #mintlink {
+                visibility: hidden;
+                display: none;
+            }
+
+            .version {
+                font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: .5em;
+                vertical-align: top;
+                color:#a0a0a0;
+            }
+
             /*#navclicker:checked + .navdropdown {height: 300px;}*/
         </style>
     </head>
@@ -916,7 +928,9 @@
                         //newContracts();                   
                         walletStat();
                         let mySession = getCookie("sessionKey");
-                        if (mySession.length > 0) {
+                        let curWallet = getCookie("sessionWallet");
+                        console.log("here");
+                        if (mySession.length > 0 && curWallet == wallet) {
                         } else {
                             let date = new Date();
                             let cstamp = date.getTime();
@@ -925,10 +939,21 @@
                             fetch('https://swim.skin/api/v1/getsalt?address=' + wallet + '&nonce=' + Math.floor(cstamp / 1000000))
                             .then(response => response.json())
                             .then(data => {
-                                    document.cookie = "sessionKey=" + data.psalt.value + "; expires=Mon, 31 Dec 2060 12:00:00 UTC; path=/";
-                                    document.getElementById("messages").innerHTML = "";
-                                    let date = new Date('2022-09-20');
-                                    getLatest(Math.floor(date.getTime()/1000));
+                                    if (data.hasOwnProperty("psalt")) {
+                                        console.log("here");
+                                        document.cookie = "sessionKey=" + data.psalt.value + "; expires=Mon, 31 Dec 2060 12:00:00 UTC; path=/";
+                                        document.cookie = "sessionWallet=" + wallet + "; expires=Mon, 31 Dec 2060 12:00:00 UTC; path=/";
+                                        document.getElementById("messages").innerHTML = "";
+                                        let date = new Date('2022-09-20');
+                                        getLatest(Math.floor(date.getTime()/1000));
+                                    } else {
+                                        console.log("boom");
+                                        document.getElementById("chatouter").style.visibility = "hidden";
+                                        document.getElementById("chatouter").style.display = "none";
+                                        document.getElementById("mintlink").style.visibility = "visible";
+                                        document.getElementById("mintlink").style.display = "block";
+
+                                    }
                                 }
                             );
 
@@ -1004,58 +1029,6 @@
 
             let graABI = '[{"inputs": [{"internalType": "string","name": "name","type": "string"},{"internalType": "string","name": "symbol","type": "string"},{"internalType": "uint256","name": "maxNftSupply","type": "uint256"}],"stateMutability": "nonpayable","type": "constructor"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "owner","type": "address"},{"indexed": true,"internalType": "address","name": "approved","type": "address"},{"indexed": true,"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "Approval","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "owner","type": "address"},{"indexed": true,"internalType": "address","name": "operator","type": "address"},{"indexed": false,"internalType": "bool","name": "approved","type": "bool"}],"name": "ApprovalForAll","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "previousOwner","type": "address"},{"indexed": true,"internalType": "address","name": "newOwner","type": "address"}],"name": "OwnershipTransferred","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "from","type": "address"},{"indexed": true,"internalType": "address","name": "to","type": "address"},{"indexed": true,"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "Transfer","type": "event"},{"inputs": [],"name": "MAX_SSK","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "userAddy","type": "address"}],"name": "addFree","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "approve","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "owner","type": "address"}],"name": "balanceOf","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "baseURI","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "amount","type": "uint256"}],"name": "changeWalletLimit","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "deposited","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "emergencyDeposit","outputs": [],"stateMutability": "payable","type": "function"},{"inputs": [{"internalType": "uint256","name": "","type": "uint256"}],"name": "firstWinners","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "firstWinningsWithdrawn","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "firstWithdraw","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "flipState","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "freeMint","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "getApproved","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "owner","type": "address"},{"internalType": "address","name": "operator","type": "address"}],"name": "isApprovedForAll","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "maxSSKPurchase","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "mintContrib","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint8","name": "numberOfTokens","type": "uint8"}],"name": "mintSSK","outputs": [],"stateMutability": "payable","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "mintedQty","outputs": [{"internalType": "uint8","name": "","type": "uint8"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "name","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "owner","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "ownerOf","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "ownerWithdrawals","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "preMaxPerWallet","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "amount","type": "uint256"}],"name": "priceUpdate","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "userAddy","type": "address"}],"name": "removeFree","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint8","name": "numberOfTokens","type": "uint8"}],"name": "reserveSSK","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "from","type": "address"},{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "safeTransferFrom","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "from","type": "address"},{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"},{"internalType": "bytes","name": "_data","type": "bytes"}],"name": "safeTransferFrom","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "saleIsActive","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "","type": "uint256"}],"name": "secondWinners","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "secondWinningsWithdrawn","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "secondWithdraw","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "operator","type": "address"},{"internalType": "bool","name": "approved","type": "bool"}],"name": "setApprovalForAll","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "string","name": "baseURI","type": "string"}],"name": "setBaseURI","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint256[]","name": "winningTokens","type": "uint256[]"}],"name": "setFirstWinners","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint256[]","name": "winningTokens","type": "uint256[]"}],"name": "setSecondWinners","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "bytes4","name": "interfaceId","type": "bytes4"}],"name": "supportsInterface","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "symbol","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "tokenPrice","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "tokenURI","outputs": [{"internalType": "string","name": "","type": "string"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "tokensMinted","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "totalSupply","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "from","type": "address"},{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "tokenId","type": "uint256"}],"name": "transferFrom","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint256","name": "amount","type": "uint256"}],"name": "withdraw","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "withdrawn","outputs": [{"internalType": "bool","name": "","type": "bool"}],"stateMutability": "view","type": "function"}]';
             let graAddress = '0x754c8925219A7D971Ba0Ff180E0E0a2088FF7Dca';
-
-            async function mintSwimskin() {
-
-                let currentDate = luxon.DateTime.local().setZone("utc");
-                if (currentDate < futureDate) {
-                    showNotification("Minting has not gone live yet!");
-                    return;
-                }
-
-            	if (typeof window.ethereum === 'undefined') {
-                    showNotification("Install metamask first.");
-                }
-                let amount = document.getElementById("amount").value;
-                let contrib = 0.02 * amount;
-                if (wallet === undefined || wallet.length < 4) {
-                    showNotification("Connect a Metamask wallet first.");
-                    return;
-                }
-                if (contrib === undefined || contrib <= 0) {
-                    showNotification("Enter a valid Eth value.");
-                    return;
-                }
-                if (amount == undefined || amount <= 0) {
-                    showNotification("Enter a valid token quantity.");
-                    return;
-                }
-                connection = await new window.web3.eth.Contract(JSON.parse(graABI), graAddress);
-                //.then(function (connection) {
-                window.web3.eth.getBlock("pending")
-                .then(async function (bfee) {
-                    let baseFee = bfee.baseFeePerGas;
-                    //console.log('base', baseFee);
-                    try {
-
-                        //let gassy = await connection.methods.mintSwimskin(amount).estimateGas({from: wallet});
-                            //alert(gassy);
-                            if (connection.methods.freeMint(wallet).call() == true) {
-                                connection.methods.mintSSK(amount).send({from: wallet, value: 0}); //, gas: 110000, gasPrice: baseFee});
-                            } else {
-                                connection.methods.mintSSK(amount).send({from: wallet, value: window.web3.utils.toWei(contrib.toString(), "ether")}); //, gas: 110000, gasPrice: baseFee});
-                            }
-                    } catch (e) {
-                        if (e.message.search('Sale must be active to mint Swim.skin') >= 0) {
-                            showNotification("Sale is not yet active.");
-                        }
-                        if (e.message.search('Purchase would exceed max supply of Swim.skin') >= 0) {
-                            showNotification("Purchase would exceed max supply.");
-                        }
-                    }
-                });
-            }
-
 
 
 
@@ -1238,13 +1211,16 @@
                 <div id='wallet'>
                     Please <a href='https://metamask.io/download.html' target='_blank'>install Metamask</a>.
                 </div>
-                <div class="outersecond">
-                    <div class='title' id='chattitle'>Chat</div>
+                <div class="outersecond" id="chatouter">
+                    <div class='title' id='chattitle'>Chat<font class="version" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">0.1</font></div>
                     <div id="messages"></div>
                     <div id="postbodydiv" style="padding-left:1em;padding-right:1em;width:calc(100%-2em);">
                         <textarea id="postbody" rows="3" onkeydown="captureEnter(event)"></textarea>
                     </div>
                     <div><button class='winbutton' id="sender" value="Send" style="margin-left:1em;margin-right:1em;width:calc(100%-2em);" onclick="sendnow()">Send</button></div>
+                </div>
+                <div class="outersecond" id='mintlink'>
+                    <div class='title'><a href="/#__mint">Mint to Chat</a></div>
                 </div>
             </div>
 
@@ -1263,6 +1239,7 @@
                     getAccounts();
 					walletStat();
                 } else {
+                    getAccounts();
 					walletStat();
                     //checkParam();
                 }
