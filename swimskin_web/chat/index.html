@@ -825,7 +825,7 @@
 
             .sender {
                 display: inline-block;
-                padding-right: .56em;
+                padding-right: .5em;
                 font-weight: bold;
                 color: #36395A;
                 cursor: pointer;
@@ -833,6 +833,12 @@
 
             .msgLine {
                 display: inline-block;
+            }
+
+            .timeDiv {
+                color: #36395A;
+                display: inline-block;
+                padding-right: .8em;
             }
 
             #mintlink {
@@ -845,6 +851,14 @@
                 font-size: .5em;
                 vertical-align: top;
                 color:#a0a0a0;
+            }
+
+            .dateDiv {
+                font-weight: bold;
+                text-align: center;
+                margin: 0;
+                margin-bottom: .3em;
+                margin-top: .6em;
             }
 
             /*#navclicker:checked + .navdropdown {height: 300px;}*/
@@ -1048,6 +1062,7 @@
 
                 document.getElementById("messages").innerHTML = "";
                 let date = new Date('2022-09-20');
+                lastPostStamp = date;
                 getLatest(Math.floor(date.getTime()/1000));
             }
 
@@ -1115,7 +1130,7 @@
                             .then(response => response.json())
                             .then(data => {
                                     for (let i = 0; i < data.dialogue.messages.length; i++) {
-                                        postMsg(data.dialogue.messages[i].a, decodeURI(data.dialogue.messages[i].m));
+                                        postMsg(data.dialogue.messages[i].a, decodeURI(data.dialogue.messages[i].m), data.dialogue.messages[i].t);
                                     }
 
                                     lastTimestamp = Math.floor(Date.now() / 1000);
@@ -1130,9 +1145,25 @@
                 showNotification("Address copied");
             }
 
-            function postMsg(address, message) {
+            let lastPostStamp;
+
+            function postMsg(address, message, cstamp, isLocal = false) {
                 let msg = document.createElement("div");
-                msg.setAttribute("class", "messageDiv");               
+                msg.setAttribute("class", "messageDiv");
+                let timeDiv = document.createElement("div");
+                timeDiv.setAttribute("class", "timeDiv");
+                let offsetTime;
+                if (! isLocal) {
+                    let date = new Date(cstamp);
+                    let dobj = new Date();
+                    let offset = dobj.getTimezoneOffset();
+                    offsetTime = new Date(date.getTime() + offset * 60 * 1000);
+                } else {
+                    offsetTime = new Date(cstamp);
+                }
+                
+                timeDiv.innerHTML = offsetTime.getHours().toString().padStart(2, '0') + ":" + offsetTime.getMinutes().toString().padStart(2, '0') + ":" + offsetTime.getSeconds().toString().padStart(2, '0');
+                
                 let sender = document.createElement("div");
                 sender.setAttribute("class", "sender");
                 sender.setAttribute("onclick", "copyAddress('" + address + "')");
@@ -1142,8 +1173,16 @@
                 msgLine.innerHTML = message;
 
                 let allMsg = document.getElementById("messages")
+                if (lastPostStamp.getDate() == offsetTime.getDate() && lastPostStamp.getMonth() == offsetTime.getMonth() && lastPostStamp.getYear() == offsetTime.getYear()) {
+                } else {
+                    let dateDiv = document.createElement("div");
+                    dateDiv.setAttribute("class", "dateDiv");
+                    dateDiv.innerHTML = offsetTime.getDate().toString().padStart(2, '0') + " " + (offsetTime.getMonth() + 1).toString().padStart(2, '0') + " " + offsetTime.getFullYear();
+                    allMsg.append(dateDiv);
+                }
                 allMsg.append(msg);
                 msg.append(sender);
+                msg.append(timeDiv);
                 msg.append(msgLine);
                 /*sender.addEventListener("click", function() {
                     copyAddress(address);
@@ -1153,6 +1192,7 @@
                 }
 
                 allMsg.scrollTop = allMsg.scrollHeight;
+                lastPostStamp = offsetTime;
             }
 
             function sendnow() {
@@ -1171,7 +1211,7 @@
                                     lastTimestamp = Math.floor(Date.now() / 1000) + 1;
                                 }
                             );
-                postMsg(wallet, message);
+                postMsg(wallet, message, lastTimestamp);
             }
 
             function captureEnter(e) {
