@@ -1146,6 +1146,7 @@
             }
 
             let lastPostStamp;
+            let monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
             function postMsg(address, message, cstamp, isLocal = false) {
                 let msg = document.createElement("div");
@@ -1173,7 +1174,7 @@
                     if (! isLocal) {
                         let dateDiv = document.createElement("div");
                         dateDiv.setAttribute("class", "dateDiv");
-                        dateDiv.innerHTML = offsetTime.getDate().toString().padStart(2, '0') + " " + (offsetTime.getMonth() + 1).toString().padStart(2, '0') + " " + offsetTime.getFullYear();
+                        dateDiv.innerHTML = offsetTime.getDate().toString().padStart(2, '0') + " " + monthsOfYear[offsetTime.getMonth()] + " " + offsetTime.getFullYear();
                         allMsg.append(dateDiv);
                     }
                 }
@@ -1227,8 +1228,7 @@
                 <a href='https://opensea.io/collection/swimskin' target='_blank' class='extlinkouter'><img src='/opensea.svg' class='extlink' /></a>
                 <a href='https://etherscan.io/address/0x754c8925219A7D971Ba0Ff180E0E0a2088FF7Dca' target='_blank' class='extlinkouter'><img src='/etherscan.svg' class='extlink' /></a>
                 <a href='https://twitter.com/protoskin' target='_blank' class='extlinkouter'><img src='/twitter.svg' class='extlink' /></a>
-                <!--<a href='https://discord.gg/NcfDT9BYXn' target='_blank' class='extlinkouter'><img src='discord.svg' class='extlink' /></a>-->
-                <a href='https://raritysniper.com/nft-drops-calendar' target='_blank' class='extlinkouter'><img src='/raritysniper.png' class='extlink' /></a>
+                <a href='https://discord.gg/NcfDT9BYXn' target='_blank' class='extlinkouter'><img src='discord.svg' class='extlink' /></a>
 
             </div>
 
