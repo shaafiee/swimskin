@@ -1,2 +1,4 @@
 meta/*
 nft/*
+!meta
+!nft
