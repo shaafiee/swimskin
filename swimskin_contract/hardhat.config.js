@@ -6,7 +6,9 @@ require("@nomiclabs/hardhat-waffle");
 module.exports = {
   networks: {
     ropsten: {
-      url: 'http://localhost:18545',
+      //url: 'http://localhost:18545',
+      url: 'https://magical-practical-sea.quiknode.pro/39b28feab3034038d882963bd793b1892250ff06/',
+      //url: 'https://speedy-nodes-nyc.moralis.io/9f0f16131df267d7415fe3fc/eth/ropsten',
       //url: 'https://speedy-nodes-nyc.moralis.io/9f0f16131df267d7415fe3fc/eth/ropsten',
       //url: 'https://speedy-nodes-nyc.moralis.io/9f0f16131df267d7415fe3fc/eth/rinkeby',
       //url: 'https://ropsten.infura.io/v3/449f7070f7b24d26aa9293edfed73436',

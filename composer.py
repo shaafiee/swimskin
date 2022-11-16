@@ -25,7 +25,7 @@ swimsuitCleavage = {0:True, 1:True, 2:True, 3:True, 4:False, 5:False, 6:True, 7:
 swimsuitColor = {0: "", 1: "blue", 2: "red", 3: "gold", 4: "silver", 5: "green"}
 
 
-lastUnique = 0
+lastUnique = 9
 unique = {1: "angles", 2: "athlete", 3: "bourgeois", 4: "collars", 5: "cream", 6: "fifth element", 7: "koi", 8: "liquid", 9: "triad"}
 
 uniqueNavel = {0:True, 1:False, 2:False, 3:True, 4:False, 5:True, 6:True, 7:True, 8:False, 9:False}
@@ -36,9 +36,9 @@ uniqueCleavage = {0:True, 1:False, 2:True, 3:True, 4:False, 5:False, 6:True, 7:F
 
 
 
-blockchain = {0: "none", 1: "algorand", 2: "avalanche", 3: "binance", 4: "bitcoin", 5: "cardano", 6: "dogecoin", 7: "ethereum", 8: "flow", 9: "solana", 10: "tezos", 11: "tron", 12: "wax"}
+blockchain = {0: "none", 1: "ethereum", 2: "solana", 3: "binance", 4: "bitcoin", 5: "cardano", 6: "dogecoin", 7: "algorand", 8: "flow", 9: "avalanche", 10: "tezos", 11: "tron", 12: "wax"}
 
-blockchainPct = {0:0, 1:3, 2:3, 3:3, 4:3, 5:3, 6:3, 7:7, 8:3, 9:6, 10:3, 11:3, 12:3}
+blockchainPct = {0:0, 1:3, 2:3, 3:2, 4:2, 5:2, 6:2, 7:2, 8:2, 9:2, 10:3, 11:3, 12:3}
 
 
 
@@ -100,7 +100,7 @@ topBack = {0:False, 1:True, 2:True, 3:True, 4:False, 5:True, 6:True, 7:False, 8:
 
 
 
-for i in range(1, 7778) :
+for i in range(6855, 7778) :
 
 	backgroundSel = 1
 	swimsuitSel = 1
@@ -133,7 +133,7 @@ for i in range(1, 7778) :
 
 
 	image = ''
-	metadata = {"name":"Okay Beard " + str(i), "description":"It's a bear market: time to grow a beard.", "image":"_url_", "attributes": list()}
+	metadata = {"name":"Swim.skin " + str(i), "description":"Advancing connections between technology and fashion.", "image":"_url_", "attributes": list()}
 
 
 	for key in background:
@@ -143,8 +143,8 @@ for i in range(1, 7778) :
 			break
 	metadata["attributes"].append({"trait_type":"background", "value":background[backgroundSel]})
 
-	r = random.randint(1,100)
-	if (r <= 3) :
+	r = random.randint(1,400)
+	if (r <= 2) :
 		isUnique = True
 
 	if (isUnique) :
@@ -209,7 +209,7 @@ for i in range(1, 7778) :
 	metadata["attributes"].append({"trait_type":"neck", "value":neck[neckSel]})
 
 	r = random.randint(1,100)
-	if (r <= 40) :
+	if (r <= 50) :
 		hasNecklace = True
 
 	r = random.randint(1,100)
