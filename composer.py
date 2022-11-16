@@ -1,7 +1,14 @@
 from PIL import Image, ImageDraw, ImageFilter
 import random
 import json
+import os
 
+path = "nft"
+if not os.path.exists(path):
+	os.makedirs(path)
+path = "meta"
+if not os.path.exists(path):
+	os.makedirs(path)
 
 background = {1: "beige watercolor", 2: "blue watercolor", 3: "gray watercolor", 4: "green watercolor", 5: "orange watercolor", 6: "pink watercolor", 7: "purple watercolor", 8: "violet watercolor", 9: "red watercolor", 10: "yellow watercolor", 11: "rainbow", 12: "sunset", 13: "bokeh", 14: "bricks", 15: "coffee", 16: "confetti", 17: "desert", 18: "feathers", 19: "galactic", 20: "icy", 21: "lava", 22: "leafy", 23: "maze", 24: "mosaic", 25: "old_school", 26: "sand", 27: "space", 28: "sprinkles", 29: "wood"}
 
