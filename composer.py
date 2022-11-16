@@ -100,7 +100,7 @@ topBack = {0:False, 1:True, 2:True, 3:True, 4:False, 5:True, 6:True, 7:False, 8:
 
 
 
-for i in range(6855, 7778) :
+for i in range(1, 6) :
 
 	backgroundSel = 1
 	swimsuitSel = 1
@@ -382,11 +382,11 @@ for i in range(6855, 7778) :
 
 
 
-	f = open("/mnt/node/swimskin/meta/" + str(i), "w")
+	f = open("./meta/" + str(i), "w")
 	f.write(json.dumps(metadata))
 	f.close()
 
-	img1.save("/mnt/node/swimskin/images/" + str(i) + ".png", format="png")
+	img1.save("./nft/" + str(i) + ".png", format="png")
 	#img1.save("samples/" + str(i) + ".png", format="png")
 
 

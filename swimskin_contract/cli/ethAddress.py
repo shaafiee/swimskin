@@ -1,2 +1,0 @@
-ethAddress = '0x107126Ab4219C804f0C668Ceeff1aD9Ae0928c32'
-
